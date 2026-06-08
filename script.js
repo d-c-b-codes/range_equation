@@ -100,9 +100,6 @@ function handleLaunch(){
 }
 // ------- ------- ------- ------- on load ------- ------- ------- ------- 
 function onLoad(){
-    let divOne = doc.getElementById('div-1');
-    divOne.style.color = 'green';
-    externalFunction();
     defaultLoadOut();
     moveSnowman();
 }

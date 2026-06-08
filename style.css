@@ -1,0 +1,38 @@
+:root{
+    --THETADRAGSIZE: 15em;
+    --SNOWBALLSIZE: 2em;
+}
+
+#div-2{
+    color: red;
+}
+
+body{
+    background-color: aqua;
+}
+
+#snowball{
+    width: var(--SNOWBALLSIZE);
+    height: var(--SNOWBALLSIZE);
+    position: absolute;
+    left: 5px;
+    top: 1500px;
+    border-radius: var(--SNOWBALLSIZE);
+    background-color: white;
+}
+
+#theta-drag{
+    width: var(--THETADRAGSIZE);
+    height: var(--THETADRAGSIZE);
+    border-radius: var(--THETADRAGSIZE);
+    background-color: aquamarine;
+    position: absolute;
+    top: 500px;
+}
+
+#snowman{
+    width: 211px;
+    height: 244px;
+    background-image: url('/snowman.png');
+
+}

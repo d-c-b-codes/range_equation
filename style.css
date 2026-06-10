@@ -1,6 +1,18 @@
+*{
+    font-size: 1.5em;
+}
+
 :root{
     --THETADRAGSIZE: 15em;
     --SNOWBALLSIZE: 2em;
+    --EXPONENTSIZE: 0.7em;
+}
+
+sup{
+    font-size: var(--EXPONENTSIZE);
+}
+sub{
+    font-size: var(--EXPONENTSIZE);
 }
 
 
@@ -30,6 +42,6 @@ body{
 #snowman{
     width: 211px;
     height: 244px;
-    background-image: url('/range_equation/snowman.png');
+    background-image: url('/snowman.png');
 
 }

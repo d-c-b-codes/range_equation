@@ -50,11 +50,11 @@ function parseInputIntoInteger(input, bottomRange, topRange){
         switch (true){
             case (integer > topRange):
                 integer = topRange;
-                console.log(`${integer} > ${topRange}!`)
+                // console.log(`${integer} > ${topRange}!`)
                 break;
             case (integer < bottomRange):
                 integer = bottomRange;
-                console.log(`${integer} < ${bottomRange}!`)
+                // console.log(`${integer} < ${bottomRange}!`)
                 break;
         }
         input.value = integer;
@@ -87,9 +87,9 @@ function handleLaunch(){
     v0 = v0 * powerFactor;
     vx0 = v0 * Math.cos(theta * Math.PI / 180)
     vy0 = v0 * Math.sin(theta * Math.PI / 180) * -1 // because "up" is negative y px
-    console.log(`launching`, 
-        `vx0 = ${vx0}`,
-        `vy0 = ${vy0}`,
+    console.log(`launching! \n`,
+        `vx0 = ${vx0} \n`,
+        `vy0 = ${vy0} \n`,
         `θ = ${theta}º`,
     )
     snowball.style.left = `${snowballStart.x}px`
@@ -100,33 +100,33 @@ function handleLaunch(){
 }
 // ------- ------- ------- ------- on load ------- ------- ------- ------- 
 function onLoad(){
-    defaultLoadOut();
     moveSnowman();
+    defaultLoadOut();
 }
 
 function moveSnowman(){
     // 750 - 4080 (range = 3300)
     r = 750 + Math.random() * 3300
-    console.log(r)
+    // console.log(r)
     snowman.style.position = `absolute`
     snowman.style.left = `${r}px`
     snowman.style.top = `${snowballStart.y - 44}px`
     rDisplay.style.position = `absolute`
     rDisplay.style.left = `${r}px`
     rDisplay.style.top = `${snowballStart.y - 44 - 60}px`
-    rDisplay.innerText = `R = ${r / 4}`
+    rDisplay.innerText = `R = ${Math.round(r / 4)}`
 }
 
 function defaultLoadOut(){ // dummy data 
     // pre-load v0
     v0text.value = 100;
     v0text.innerText = 100;
-    // v0text.innerText = 70;
-    // console.log(v0text)
-    v0textChange();
-    
+
     // pre-load θ
     θtext.value = 45;
+
+    // affect both of those
+    v0textChange();
     θtextChange();
 }
 
@@ -152,12 +152,17 @@ const launchLoop = () => {
         cancelAnimationFrame(animationID);
         launchBtn.disabled = false;
         v0textChange();
+        console.log(Math.abs(r - x))
+        if (Math.abs(r - x) < 150){
+            // console.log('within range!')
+            alertMessage();
+        }
         return;
     }
     else {
         snowball.style.left = `${x}px`
         snowball.style.top = `${y}px`
-        xDisplay.innerText = `x: ${x / 4}`
+        xDisplay.innerText = `x: ${Math.round(x / 4)}`
     }
     
     animationID = requestAnimationFrame(launchLoop);
@@ -177,4 +182,22 @@ function calcTheta(v0){
 function calcV0(angle){
     let velocity = Math.sqrt((r * gravity) / Math.sin(2 * parseFloat(angle) * Math.PI / 180))
     console.log(`v0 = ${velocity / powerFactor}m/s`)
+}
+
+
+// ------- ------- ------- ------- snowman laments ------- ------- ------- ------- 
+
+function alertMessage(){
+
+    let laments = [
+        'ouch!',
+        'oof!',
+        'wee bit chilly, innit!',
+        'smells like carrots!',
+        'ice to meet you!',
+        'it\'s time to chill OOOUT!',
+    ]
+    let lamentIndex = Math.floor(Math.random() * laments.length);
+    let lament = laments[lamentIndex];
+    alert(lament)
 }
